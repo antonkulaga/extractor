@@ -7,6 +7,6 @@ import org.backuity.clist._
 object Main {
 
   def main(args: Array[String]): Unit = {
-    Cli.parse(args).withCommands(Extract, Annotate).foreach(_.run())
+    Cli.parse(args).withCommand(new Extract){ e => e.run() }
   }
 }

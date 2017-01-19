@@ -3,9 +3,14 @@ package org.comp.bio.aging.extractor
 import better.files._
 import java.io.{File => JFile}
 
+import fastparse.all._
+import fastparse.core.Parser
+
 import scala.collection.immutable.Seq
 
-trait Annotator {
+class Annotator(refs: BibReferences) {
+
+ // val parser = new BiblioReferenceParser(refs.biblioReferences)
 
   def update(file: JFile, refs: Seq[BiblioReference]) = {
     val fl = file.toScala

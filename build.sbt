@@ -29,7 +29,7 @@ resolvers += "ICM repository" at "http://maven.icm.edu.pl/artifactory/repo"
 libraryDependencies ++= Seq(
   "com.github.melrief" %% "purecsv" % "0.0.9",
   "com.lihaoyi" %% "pprint" % "0.4.4",
-  "com.lihaoyi" %% "fastparse" % "0.4.1"
+  "com.lihaoyi" %% "fastparse" % "0.4.1",
   "pl.edu.icm.cermine" % "cermine-impl" % "1.11",
   "com.github.pathikrit" %% "better-files" % "2.17.1",
   "edu.eckerd" %% "google-api-scala" % "0.1.0",
