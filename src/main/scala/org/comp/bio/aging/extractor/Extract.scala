@@ -11,11 +11,13 @@ class Extract extends Command(description = "extracts references from pdf") with
 
   var from: JFile = arg[JFile](description = "pdf to extract references from")
 
-  var update: JFile = opt[JFile](description = "Into some text")
+  var tsv: String = opt[String](description = "TSV to write extracted references to", default = "")
 
-  var tsv: String = opt[String](description = "TSV to write extracted references to")
+  var update: JFile = opt[JFile](description = "Substitute references in [] by sci-hub links", default = new JFile(""))
+
 
   protected def printBiblioReferences(file: JFile) = {
+    println("extracted references:\n")
     val refs = extractor.extractBibEntries(file)
     import purecsv.safe._
     for(r <- refs.biblioReferences) println(r.toCSV("\t"))
@@ -38,13 +40,14 @@ class Extract extends Command(description = "extracts references from pdf") with
 
   def run() = {
     from match {
-      case file if file.exists() && this.update.toScala.notExists && this.tsv.isEmpty=>
+      case file if file.exists() && file.isFile && !update.exists() && !update.isFile && this.tsv == "" =>
         printBiblioReferences(file)
 
-      case file if file.exists()=>
+      case file if file.exists() && file.isFile=>
+        println("extracting...")
         val refs: BibReferences = extractor.extractBibEntries(file)
         if(tsv.nonEmpty) writeTSV(refs, tsv)
-        if(update.exists()) rewriteFile(refs, update.toScala)
+        if(update.exists() && update.isFile) rewriteFile(refs, update.toScala)
 
 
       case non => throw new Exception(s"File ${non.getPath} does not exist")
