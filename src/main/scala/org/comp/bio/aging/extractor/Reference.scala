@@ -46,7 +46,7 @@ class Reference(fields: Map[String, List[String]], position: Int = 0)
       case ("", e) => e
       case (acc, e)=> acc +", "+ e
     })
-    BiblioReference(num, url.getOrElse(na), title.getOrElse(na), journal.getOrElse(na), auth, year.getOrElse(na) )
+    BiblioReference(num, url.getOrElse(num.toString), title.getOrElse(na), journal.getOrElse(na), auth, year.getOrElse(na) )
   }
   //def hasPosition(str: String) =
 }

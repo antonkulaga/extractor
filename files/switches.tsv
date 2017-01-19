@@ -1,5 +1,5 @@
 #	name	ON	OFF	origin	effector	applications	references		
-translational switches									
+transcriptional switches
 1	ABA	yes	no	Arabidopsis thaliana, yeast	abscisic acid	gene therapy, experimental tool to control diverse cellular activities in vivo	[19]		
 2	AIR	yes	no	Aspergillus nidulans	acetaldehyde	gas-adjustable transgene expression, biopharmaceutical manufacturing	[20]		
 3	ART	yes	no	Chlamydia pneumoniae	L-arginine	biopharmaceutical manufacturing, gene therapy	[21]		
@@ -22,8 +22,8 @@ translational switches
 20	GyrB	yes	yes	Escherichia coli	coumermycin, novobiocin	rapid regulation of gene expression	[39]		
 21	HEA-3	yes	no	Homo sapiens	4-hydroxytamoxifen	gene therapy	[40]		
 22	Intramer	no	yes	synthetic SELEX-derived aptamers	theophylline	controlling transgene expression, construction of complex gene networks	[41]		
-23	LacI	yes	no	Escherichia coli	IPTG	reversible regulation of gene expression, predictable levels of de-repressed gene expression	[42–46]		
-24	LAD	yes	no	Arabidopsis thaliana, yeast	blue light	light-controlled gene expression regulation; protein hetero- and homo-dimerization induced by light	[47]		
+23	LacI	yes	no	Escherichia coli	IPTG	reversible regulation of gene expression, predictable levels of de-repressed gene expression	[42, 43, 44, 45, 46]
+24	LAD	yes	no	Arabidopsis thaliana, yeast	blue light	light-controlled gene expression regulation; protein hetero- and homo-dimerization induced by light	[47]
 25	LightOn	yes	no	Neurospora crassa, yeast	blue light	light-switchable transcription control	[48]		
 26	NICE	yes	yes	Arthrobacter nicotinovorans	6-hydroxynicotine	therapeutic cell engineering, biopharmaceutical manufacturing	[49]		
 27	PPAR*	yes	no	Homo sapiens	rosiglitazone	gene therapy	[50]		

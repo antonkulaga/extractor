@@ -23,8 +23,10 @@ class CommandSpec extends WordSpec with Matchers {
       simple shouldEqual "hello [one] world [two, three, four] it is time to test it! [four, five, six, seven]"
     }
 
+
     "read and substitute references from the pdf" in {
       val pdf: InputStream = getClass().getClassLoader().getResourceAsStream("1-8-2017_Mammalian.pdf")
+      println(s"PDF IS ${pdf}")
       val extractor =  new Extractor
       val refs = extractor.extractBibEntries(pdf)
       refs.biblioReferences.size shouldEqual 190
@@ -40,19 +42,20 @@ class CommandSpec extends WordSpec with Matchers {
       val part = """[http://sci-hub.cc/10.1016/j.chembiol.2009.02.005, http://sci-hub.cc/10.1016/j.copbio.2009.07.009]"""
       result.contains(part) shouldEqual true
     }
-
     /*
+    //DOES NOT WORK BECAUSE CERMINE DOES NOT CATCH ALL DOI-s
    "read switches" in {
-       val pdf: InputStream = getClass().getClassLoader().getResourceAsStream("1-8-2017_Mammalian.pdf")
-       val extractor =  new Extractor
-       val refs = extractor.extractBibEntries(pdf)
-       val switch: Source = resource"Switches - Sheet1.tsv"
-       val text = switch.getLines().reduce(_ + "\n" + _)
-       val parser = new BiblioReferenceParser(refs.biblioReferences)
-       val Parsed.Success(result, _) = parser.text.parse(text)
-       val part = "[http://sci-hub.cc/10.1021/cb800025k, http://sci-hub.cc/10.1038/nchembio.597]" //[82,83]
-       result.contains(part) shouldEqual(true)
-     }
-    */
+     val switch = Source.fromResource("switches.tsv")
+     val text = switch.getLines().reduce(_ + "\n" + _)
+     val pdf: InputStream = getClass.getClassLoader.getResourceAsStream("1-8-2017_Mammalian.pdf")
+     val extractor =  new Extractor
+     val refs = extractor.extractBibEntries(pdf)
+     val parser = new BiblioReferenceParser(refs.biblioReferences)
+     val Parsed.Success(result, _) = parser.text.parse(text)
+     println(result)
+     val part = "[http://sci-hub.cc/10.1021/cb800025k, http://sci-hub.cc/10.1038/nchembio.597]" //[82,83]
+     result.contains(part) shouldEqual(true)
+   }
+   */
   }
 }

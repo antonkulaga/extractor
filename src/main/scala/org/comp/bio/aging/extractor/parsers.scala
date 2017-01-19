@@ -23,17 +23,20 @@ class ReferenceParser[T](refs: IndexedSeq[T])(implicit conv: T => String) extend
     case (first, seq) => seq.foldLeft(first){ case (acc, el) => acc + ", " + el}
   }
 
-  val refSpan = P(integer ~ optSpaces ~ "-" ~ optSpaces ~ integer).map{
-    case (from, to) if from > to =>
-      throw new Exception(s"${from} cannot be > ${to}")
-    case (from, tooLarge) if tooLarge > refs.length =>
+  val refSpan: P[String] = P(integer ~ "-" ~ integer).map{
+    case (start, end) if start > end =>
+      throw new Exception(s"${start} cannot be > ${end}")
+
+    case (_, tooLarge) if tooLarge > refs.length =>
       throw new Exception(s"too large index ${tooLarge} while refs length is ${refs.length}")
+
     case (start, end)  =>
       val seq = for( index <- start to end) yield conv(refs(index - 1))
-      seq.foldLeft(""){
+      val result = seq.foldLeft(""){
         case ("", el) => el
         case (acc, el) => acc + ", " + el
       }
+      result
   }
 
   val ref = P(refSpan | simpleRef)

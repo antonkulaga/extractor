@@ -16,6 +16,8 @@ javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint", "-J-Xss5M", "
 
 mainClass in Compile := Some("org.comp.bio.aging.extractor.Main")
 
+resourceDirectory in Test := baseDirectory { _ / "files" }.value
+
 unmanagedClasspath in Compile ++= (unmanagedResources in Compile).value
 
 updateOptions := updateOptions.value.withCachedResolution(true) //to speed up dependency resolution
