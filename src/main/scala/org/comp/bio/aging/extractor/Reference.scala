@@ -12,6 +12,11 @@ object Reference {
   }
 }
 
+/**
+  * Extracts biblio-reference fields from the Map of values we get from CERMINE
+  * @param fields
+  * @param position
+  */
 class Reference(fields: Map[String, List[String]], position: Int = 0)
 {
   protected def getHead(name: String) = get(name).flatMap(list=>list.headOption)
@@ -46,11 +51,9 @@ class Reference(fields: Map[String, List[String]], position: Int = 0)
       case ("", e) => e
       case (acc, e)=> acc +", "+ e
     })
-    BiblioReference(num, url.getOrElse(num.toString), title.getOrElse(na), journal.getOrElse(na), auth, year.getOrElse(na) )
+    BiblioReference(num, url.getOrElse(num.toString), title.getOrElse(na), auth, journal.getOrElse(na), year.getOrElse(na) )
   }
   //def hasPosition(str: String) =
 }
 
 case class BiblioReference(num: Int, url: String, title: String, authors: String, journal: String, year: String)
-{
-}

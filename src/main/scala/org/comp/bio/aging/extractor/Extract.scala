@@ -6,7 +6,10 @@ import java.io.{File => JFile}
 import fastparse.core.Parsed
 import org.backuity.clist._
 
-class Extract extends Command(description = "extracts references from pdf") with Common{
+/**
+  * Ectract command
+  */
+class Extract extends Command(description = "extracts references from pdf") with Common {
 
   lazy val extractor  = new Extractor
 
@@ -53,7 +56,7 @@ class Extract extends Command(description = "extracts references from pdf") with
         if(!(update.exists() && update.isFile) && tsv != new JFile("")){
           printBiblioReferences(refs)
         } else {
-          if(tsv.isDirectory == false) writeTSV(refs, tsv)
+          if(!tsv.isDirectory) writeTSV(refs, tsv)
           val writeToOpt = if(this.updateTo==new JFile("")) None else Some(updateTo.toScala)
           if(update.isFile && update.exists()) rewriteFile(refs, update.toScala, writeToOpt)
         }

@@ -4,9 +4,14 @@ import fastparse.all._
 import fastparse.core.Parser
 import scala.collection.immutable._
 
-class BiblioReferenceParser(refs: IndexedSeq[BiblioReference]) extends ReferenceParser[BiblioReference](refs)(r=>r.url) {
-}
+class BiblioReferenceParser(refs: IndexedSeq[BiblioReference]) extends ReferenceParser[BiblioReference](refs)(r=>r.url)
 
+/**
+  * This parser is used to subsitute [number] with values we get from the references
+  * @param refs
+  * @param conv
+  * @tparam T
+  */
 class ReferenceParser[T](refs: IndexedSeq[T])(implicit conv: T => String) extends BasicParser {
   lazy val normal: P[String] = P( CharsWhile(_ != '[').! )
 

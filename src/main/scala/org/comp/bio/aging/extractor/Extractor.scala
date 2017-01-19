@@ -8,7 +8,10 @@ import scala.collection.JavaConverters._
 import better.files._
 import java.io.{FileInputStream, InputStream, File => JFile}
 
-
+/**
+  * Class that extracts biblioRefences from original Cermine BibEntries
+  * @param entries
+  */
 class BibReferences(entries: IndexedSeq[BibEntry]){
   lazy val references: IndexedSeq[Reference] = entries.map(e=> Reference(e))
   lazy val biblioReferences: IndexedSeq[BiblioReference] = for((r, index) <- references.zipWithIndex) yield r.toBiblioReference(index + 1)

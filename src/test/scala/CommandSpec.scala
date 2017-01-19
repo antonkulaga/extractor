@@ -25,7 +25,7 @@ class CommandSpec extends WordSpec with Matchers {
 
 
     "read and substitute references from the pdf" in {
-      val pdf: InputStream = getClass().getClassLoader().getResourceAsStream("1-8-2017_Mammalian.pdf")
+      val pdf: InputStream = getClass().getClassLoader().getResourceAsStream("from.pdf")
       println(s"PDF IS ${pdf}")
       val extractor =  new Extractor
       val refs = extractor.extractBibEntries(pdf)
